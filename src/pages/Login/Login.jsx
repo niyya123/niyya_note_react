@@ -14,6 +14,14 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  // Redirect to home if token exists
+  React.useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/home");
+    }
+  }, [navigate]);
+
   // Get state from Redux
   const { isLoading, error } = useSelector((state) => state.auth);
 
@@ -52,39 +60,39 @@ const Login = () => {
 
   return (
     <>
-      <div class="container">
-        <div class="row justify-content-center align-items-center min-vh-100">
-          <div class="col-auto">
-            <div class="login-container">
-              <h2 class="text-center text-primary">Login</h2>
+      <div className="container">
+        <div className="row justify-content-center align-items-center min-vh-100">
+          <div className="col-auto">
+            <div className="login-container">
+              <h2 className="text-center text-primary">Login</h2>
               {error && <p style={{ color: "red" }}>{error}</p>}
 
-              <form onSubmit={handleSubmit} class="form-group">
+              <form onSubmit={handleSubmit} className="form-group">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email"
-                  class="mb-2"
+                  className="mb-2"
                 />
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
-                  class="mb-4"
+                  className="mb-4"
                 />
 
-                <div class="text-center">
+                <div className="text-center">
                   <button
                     type="submit"
                     disabled={isLoading}
-                    class="login-button"
+                    className="login-button"
                   >
                     {isLoading ? "Logging in..." : "Login"}
                   </button>
                 </div>
-                <h5 class="text-center mt-2">Register <a href="/register">here</a> if you don't have an account</h5>
+                <h5 className="text-center mt-2">Register <a className="text-primary" style={{ cursor: "pointer" }} onClick={() => navigate('/register')}>here</a> if you don't have an account</h5>
               </form>
             </div>
           </div>

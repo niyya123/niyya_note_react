@@ -4,6 +4,7 @@ import Home from './pages/Home/Home'
 import Register from './pages/Register/Register'
 import ProtectedRoute from './components/common/ProtectedRoute'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         </Route>
         <Route path="/" element={<Login />} />
       </Routes>
+      <ToastContainer />
     </Router>
   )
 }
